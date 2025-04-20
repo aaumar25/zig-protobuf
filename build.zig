@@ -36,6 +36,8 @@ pub fn build(b: *std.Build) !void {
 
     const module = b.addModule("protobuf", .{
         .root_source_file = b.path("src/protobuf.zig"),
+        .target = target,
+        .optimize = optimize,
     });
 
     const exe = buildGenerator(b, .{
@@ -263,6 +265,8 @@ pub fn buildGenerator(b: *std.Build, opt: GenOptions) *std.Build.Step.Compile {
 
     const module = b.addModule("protobuf", .{
         .root_source_file = b.path("src/protobuf.zig"),
+        .target = opt.target,
+        .optimize = opt.optimize,
     });
 
     exe.root_module.addImport("protobuf", module);
