@@ -1192,6 +1192,7 @@ pub fn pb_decode(comptime T: type, input: []const u8, allocator: Allocator) Unio
             }
         } else {
             log.debug("Unknown field received in {s} {any}\n", .{ @typeName(T), extracted_data.tag });
+            return UnionDecodingError.InvalidInput;
         }
     }
 
